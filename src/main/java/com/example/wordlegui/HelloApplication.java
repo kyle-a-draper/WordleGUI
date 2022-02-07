@@ -18,8 +18,8 @@ import javafx.stage.Stage;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Locale;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class HelloApplication extends Application  {
     public static int count = -1;
@@ -37,17 +37,17 @@ public class HelloApplication extends Application  {
     public void start(Stage stage){
         Group root = new Group();
         Scene scene = new Scene(root, 350, 600);
-        String[] array = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "U", "P", "Q", "R", "S", "T", "U", "V", "W", "X",};
+        String[] array = {" ", " ", " ", " ", " ", " ", " ", " ", "I", "J", "K", "L", "M", "N", "O", "U", "P", "Q", "R", "S", "T", "U", "V", "W", "X",};
 
 
-        stage.setTitle("Hello!");
+        stage.setTitle("Wordle!");
 
         Rectangle r1 = new Rectangle(60, 60);
         r1.setArcHeight(20);
         r1.setArcWidth(20);
         r1.setStroke(Color.BLACK);
         r1.setStrokeWidth(6);
-        r1.setFill(Color.GREEN);
+        r1.setFill(Color.GRAY);
         r1.setX(5);
         r1.setY(200);
 
@@ -542,8 +542,13 @@ public class HelloApplication extends Application  {
         textField.setAlignment(Pos.CENTER);
         textField.setFont(Font.font("Impact", FontWeight.BOLD, 50));
 
+        ArrayList<String> Guesses = new ArrayList<>();
+
 
         textField.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ESCAPE) {
+                textField.clear();
+            }
 
             if (event.getCode() == KeyCode.ENTER) {
                 boolean valid = false;
@@ -570,33 +575,159 @@ public class HelloApplication extends Application  {
                 array[3] = String.valueOf(temp.charAt(3));
                 array[4] = String.valueOf(temp.charAt(4));
                 System.out.println(temp);
-                incrimentCount();
+                incrementCount();
                 try {
-                    if(Validate.validate(temp)){
+                    if(Validate.validate(temp) && !(Guesses.contains(temp))){
                         valid = true;
+                        Guesses.add(temp);
                         System.out.println("Valid Word");
                     } else {
                         System.out.println("Invalid Word");
                         valid = false;
-                        decrimentCount();
+                        decrementCount();
                     }
                 } catch (FileNotFoundException e) {
                     System.out.println("File not found");
                 }
                 if(count == 0 && valid) {
                     update(t1, t2, t3, t4, t5, array);
+                    if(array[0].equals(String.valueOf(Wordle.charAt(0)))){
+                        r1.setFill(Color.GREEN);
+                    } else if(Wordle.contains(array[0]) && !(array[0].equals(String.valueOf(Wordle.charAt(0))))){
+                        r1.setFill(Color.ORANGE);
+                    }
+                    if(array[1].equals(String.valueOf(Wordle.charAt(1)))){
+                        r2.setFill(Color.GREEN);
+                    } else if(Wordle.contains(array[1]) && !(array[1].equals(String.valueOf(Wordle.charAt(1))))){
+                        r2.setFill(Color.ORANGE);
+                    }
+                    if(array[2].equals(String.valueOf(Wordle.charAt(2)))){
+                        r3.setFill(Color.GREEN);
+                    } else if(Wordle.contains(array[2]) && !(array[2].equals(String.valueOf(Wordle.charAt(2))))){
+                        r3.setFill(Color.ORANGE);
+                    }
+                    if(array[3].equals(String.valueOf(Wordle.charAt(3)))){
+                        r4.setFill(Color.GREEN);
+                    } else if(Wordle.contains(array[3]) && !(array[3].equals(String.valueOf(Wordle.charAt(3))))){
+                        r4.setFill(Color.ORANGE);
+                    }
+                    if(array[4].equals(String.valueOf(Wordle.charAt(4)))){
+                        r5.setFill(Color.GREEN);
+                    } else if(Wordle.contains(array[4]) && !(array[4].equals(String.valueOf(Wordle.charAt(4))))){
+                        r5.setFill(Color.ORANGE);
+                    }
                 }
                 if(count == 1 && valid) {
                     update(t6, t7, t8, t9, t10, array);
+                    if(array[0].equals(String.valueOf(Wordle.charAt(0)))){
+                        r6.setFill(Color.GREEN);
+                    } else if(Wordle.contains(array[0]) && !(array[0].equals(String.valueOf(Wordle.charAt(0))))){
+                        r6.setFill(Color.ORANGE);
+                    }
+                    if(array[1].equals(String.valueOf(Wordle.charAt(1)))){
+                        r7.setFill(Color.GREEN);
+                    } else if(Wordle.contains(array[1]) && !(array[1].equals(String.valueOf(Wordle.charAt(1))))){
+                        r7.setFill(Color.ORANGE);
+                    }
+                    if(array[2].equals(String.valueOf(Wordle.charAt(2)))){
+                        r8.setFill(Color.GREEN);
+                    } else if(Wordle.contains(array[2]) && !(array[2].equals(String.valueOf(Wordle.charAt(2))))){
+                        r8.setFill(Color.ORANGE);
+                    }
+                    if(array[3].equals(String.valueOf(Wordle.charAt(3)))){
+                        r9.setFill(Color.GREEN);
+                    } else if(Wordle.contains(array[3]) && !(array[3].equals(String.valueOf(Wordle.charAt(3))))){
+                        r9.setFill(Color.ORANGE);
+                    }
+                    if(array[4].equals(String.valueOf(Wordle.charAt(4)))){
+                        r10.setFill(Color.GREEN);
+                    } else if(Wordle.contains(array[4]) && !(array[4].equals(String.valueOf(Wordle.charAt(4))))){
+                        r10.setFill(Color.ORANGE);
+                    }
                 }
                 if(count == 2 && valid) {
                     update(t11, t12, t13, t14, t15, array);
+                    if(array[0].equals(String.valueOf(Wordle.charAt(0)))){
+                        r11.setFill(Color.GREEN);
+                    } else if(Wordle.contains(array[0]) && !(array[0].equals(String.valueOf(Wordle.charAt(0))))){
+                        r11.setFill(Color.ORANGE);
+                    }
+                    if(array[1].equals(String.valueOf(Wordle.charAt(1)))){
+                        r12.setFill(Color.GREEN);
+                    } else if(Wordle.contains(array[1]) && !(array[1].equals(String.valueOf(Wordle.charAt(1))))){
+                        r12.setFill(Color.ORANGE);
+                    }
+                    if(array[2].equals(String.valueOf(Wordle.charAt(2)))){
+                        r13.setFill(Color.GREEN);
+                    } else if(Wordle.contains(array[2]) && !(array[2].equals(String.valueOf(Wordle.charAt(2))))){
+                        r13.setFill(Color.ORANGE);
+                    }
+                    if(array[3].equals(String.valueOf(Wordle.charAt(3)))){
+                        r14.setFill(Color.GREEN);
+                    } else if(Wordle.contains(array[3]) && !(array[3].equals(String.valueOf(Wordle.charAt(3))))){
+                        r14.setFill(Color.ORANGE);
+                    }
+                    if(array[4].equals(String.valueOf(Wordle.charAt(4)))){
+                        r15.setFill(Color.GREEN);
+                    } else if(Wordle.contains(array[4]) && !(array[4].equals(String.valueOf(Wordle.charAt(4))))){
+                        r15.setFill(Color.ORANGE);
+                    }
                 }
                 if(count == 3 && valid) {
                     update(t16, t17, t18, t19, t20, array);
+                    if(array[0].equals(String.valueOf(Wordle.charAt(0)))){
+                        r16.setFill(Color.GREEN);
+                    } else if(Wordle.contains(array[0]) && !(array[0].equals(String.valueOf(Wordle.charAt(0))))){
+                        r16.setFill(Color.ORANGE);
+                    }
+                    if(array[1].equals(String.valueOf(Wordle.charAt(1)))){
+                        r17.setFill(Color.GREEN);
+                    } else if(Wordle.contains(array[1]) && !(array[1].equals(String.valueOf(Wordle.charAt(1))))){
+                        r17.setFill(Color.ORANGE);
+                    }
+                    if(array[2].equals(String.valueOf(Wordle.charAt(2)))){
+                        r18.setFill(Color.GREEN);
+                    } else if(Wordle.contains(array[2]) && !(array[2].equals(String.valueOf(Wordle.charAt(2))))){
+                        r18.setFill(Color.ORANGE);
+                    }
+                    if(array[3].equals(String.valueOf(Wordle.charAt(3)))){
+                        r19.setFill(Color.GREEN);
+                    } else if(Wordle.contains(array[3]) && !(array[3].equals(String.valueOf(Wordle.charAt(3))))){
+                        r19.setFill(Color.ORANGE);
+                    }
+                    if(array[4].equals(String.valueOf(Wordle.charAt(4)))){
+                        r20.setFill(Color.GREEN);
+                    } else if(Wordle.contains(array[4]) && !(array[4].equals(String.valueOf(Wordle.charAt(4))))){
+                        r20.setFill(Color.ORANGE);
+                    }
                 }
                 if(count == 4 && valid) {
                     update(t21, t22, t23, t24, t25, array);
+                    if(array[0].equals(String.valueOf(Wordle.charAt(0)))){
+                        r21.setFill(Color.GREEN);
+                    } else if(Wordle.contains(array[0]) && !(array[0].equals(String.valueOf(Wordle.charAt(0))))){
+                        r21.setFill(Color.ORANGE);
+                    }
+                    if(array[1].equals(String.valueOf(Wordle.charAt(1)))){
+                        r22.setFill(Color.GREEN);
+                    } else if(Wordle.contains(array[1]) && !(array[1].equals(String.valueOf(Wordle.charAt(1))))){
+                        r22.setFill(Color.ORANGE);
+                    }
+                    if(array[2].equals(String.valueOf(Wordle.charAt(2)))){
+                        r23.setFill(Color.GREEN);
+                    } else if(Wordle.contains(array[2]) && !(array[2].equals(String.valueOf(Wordle.charAt(2))))){
+                        r23.setFill(Color.ORANGE);
+                    }
+                    if(array[3].equals(String.valueOf(Wordle.charAt(3)))){
+                        r24.setFill(Color.GREEN);
+                    } else if(Wordle.contains(array[3]) && !(array[3].equals(String.valueOf(Wordle.charAt(3))))){
+                        r24.setFill(Color.ORANGE);
+                    }
+                    if(array[4].equals(String.valueOf(Wordle.charAt(4)))){
+                        r25.setFill(Color.GREEN);
+                    } else if(Wordle.contains(array[4]) && !(array[4].equals(String.valueOf(Wordle.charAt(4))))){
+                        r25.setFill(Color.ORANGE);
+                    }
                 }
             }
         });
@@ -637,10 +768,10 @@ public class HelloApplication extends Application  {
         t4.setText(String.valueOf(array[3]));
         t5.setText(String.valueOf(array[4]));
     }
-    public static void incrimentCount(){
+    public static void incrementCount(){
         count++;
     }
-    public static void decrimentCount(){
+    public static void decrementCount(){
         count--;
     }
 }
