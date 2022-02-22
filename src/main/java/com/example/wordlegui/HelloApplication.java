@@ -37,10 +37,12 @@ public class HelloApplication extends Application  {
     public void start(Stage stage){
         Group root = new Group();
         Scene scene = new Scene(root, 350, 600);
-        String[] array = {" ", " ", " ", " ", " ", " ", " ", " ", "I", "J", "K", "L", "M", "N", "O", "U", "P", "Q", "R", "S", "T", "U", "V", "W", "X",};
+        String[] array = {" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ",};
 
 
         stage.setTitle("Wordle!");
+
+
 
         Rectangle r1 = new Rectangle(60, 60);
         r1.setArcHeight(20);
@@ -50,6 +52,7 @@ public class HelloApplication extends Application  {
         r1.setFill(Color.GRAY);
         r1.setX(5);
         r1.setY(200);
+
 
         Text t1 = new Text();
         t1.setText(array[0]);
@@ -589,6 +592,9 @@ public class HelloApplication extends Application  {
                 } catch (FileNotFoundException e) {
                     System.out.println("File not found");
                 }
+                if(temp.equals(Wordle)){
+                    textField.setText("WIN!!");
+                }
                 if(count == 0 && valid) {
                     update(t1, t2, t3, t4, t5, array);
                     if(array[0].equals(String.valueOf(Wordle.charAt(0)))){
@@ -728,7 +734,12 @@ public class HelloApplication extends Application  {
                     } else if(Wordle.contains(array[4]) && !(array[4].equals(String.valueOf(Wordle.charAt(4))))){
                         r25.setFill(Color.ORANGE);
                     }
+
                 }
+                if(count == 4 && !temp.equals(Wordle) && valid){
+                    textField.setText(Wordle);
+                }
+
             }
         });
 
