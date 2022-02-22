@@ -592,7 +592,8 @@ public class HelloApplication extends Application  {
                 } catch (FileNotFoundException e) {
                     System.out.println("File not found");
                 }
-                if(temp.equals(Wordle)){
+                if(temp.trim().equals(Wordle.trim())){
+                    System.out.println("Got here " + temp);
                     textField.setText("WIN!!");
                 }
                 if(count == 0 && valid) {
