@@ -46,7 +46,7 @@ public class ChooseWord {
 
 
     public static int getRandom(){
-        return (int) ((Math.random() * (5756)) + 0);
+        return (int) ((Math.random() * (2309)) + 0);
         }
 
     public static void writeFile(String file, String text) throws IOException {

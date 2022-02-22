@@ -10,7 +10,7 @@ public class Validate {
 
             ArrayList<String> wordsArray = new ArrayList<>();
 
-            Scanner scan = new Scanner(new FileReader("Words.txt"));
+            Scanner scan = new Scanner(new FileReader("GuessWords.txt"));
             while (scan.hasNext()) {
                 wordsArray.add(scan.nextLine());
             }
